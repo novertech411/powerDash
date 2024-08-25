@@ -1,8 +1,14 @@
 import React from "react";
 import styles from "./menulink.module.css";
+import Link from "next/link";
 
-function menuLink() {
-  return <div className={styles.container}>menuLink</div>;
-}
+const menuLink = ({ item }) => {
+  return (
+    <Link href={item.path} className={styles.container}>
+      {item.icon}
+      {item.title}
+    </Link>
+  );
+};
 
 export default menuLink;

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./sidebar.module.css";
-import { title } from "process";
-
+import MenuLink from "../menueLink/menuLink";
+import profile from "@/public/images/nover_3D_avatar_metaverse_a5cc3de3-34d9-45d7-a30d-3558254c275e.png";
 import {
   MdDashboard,
   MdSupervisedUserCircle,
@@ -14,6 +14,7 @@ import {
   MdHelpCenter,
   MdLogout,
 } from "react-icons/md";
+import Image from "next/image";
 
 const menuItems = [
   {
@@ -80,10 +81,23 @@ const menuItems = [
 
 function sidebar() {
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.user}>
+        <Image src={profile} alt="" width="50" height="50" />
+        <div className={styles.userDetail}>
+          <span className={styles.username}> john joe</span>
+          <span className={styles.userTitle}> Administration</span>
+        </div>
+      </div>
       <ul>
         {menuItems.map((cat) => (
-          <li key={cat.title}> {cat.title}</li>
+          <li key={cat.title}>
+            {" "}
+            <span className={styles.cat}> {cat.title}</span>
+            {cat.list.map((item) => (
+              <MenuLink item={item} key={item.title} />
+            ))}
+          </li>
         ))}
       </ul>
     </div>
